@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-page de connexion
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <p>{{ message }}</p>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Se connecter</button>
+    </form>
+{% endblock %}
