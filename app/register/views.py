@@ -16,4 +16,4 @@ def register(request):
             # auto-login user
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, "register/index.html", context={'form': form})
+    return render(request, "register/particulier.html", context={'form': form})
