@@ -17,7 +17,10 @@ def login_user(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('/account')
+                if user.role == 'PARTICULAR':
+                    return redirect('/account/client')
+                else:
+                    return redirect('/account/pro')
         message = 'Identifiants invalides.'
     return render(request, "login/index.html", context={'form': form, 'message': message})
 
