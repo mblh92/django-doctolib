@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account',
     'booking',
     'chat',
+    'phonenumber_field',
 ]
 
 AUTH_USER_MODEL = 'register.User'

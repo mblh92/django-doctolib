@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ServiceForm
+from .forms import ProfileForm
 from .models import Services
 
 
@@ -18,13 +19,30 @@ def check_user(request,role):
 def account_pro(request):
     if not check_user(request,'PROFESSIONAL'):
         return redirect('account_client')
-    return render(request, "account/pro.html")
+
+    profile_form = ProfileForm(instance=request.user)
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=request.user)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Votre profil a bien été mis à jour')
+            return redirect('account_pro')
+        messages.error(request, profile_form.errors)
+
+    return render(request, "account/profile_pro.html", context={'form': profile_form})
 
 @login_required
 def account_client(request):
     if not check_user(request,'PARTICULAR'):
         return redirect('account_pro')
     return render(request, "account/particulier.html")
+
+@login_required
+def account_profil_pro(request):
+    if not check_user(request,'PARTICULAR'):
+        return redirect('account_pro')
+    return render(request, "account/profile_pro.html")
 
 
 @login_required

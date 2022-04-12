@@ -1,8 +1,6 @@
 {% extends "base.pro.html" %}
 
 {% block content %}
-<div id="app" class="min-h-screen subpixel-antialiased p-8">
-    <div class="container space-y-8 text-sm mx-auto">
         <div class="space-y-5">
             {% include 'elements/message.html' %}
             <h1 class="mb-5">Mes services</h1>
@@ -40,8 +38,6 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
 {% include "elements/modal-form.html" with form=form %}
 <script>
     document.getElementById('show-modal').addEventListener('click', function() {
