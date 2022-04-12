@@ -4,7 +4,7 @@ from django.db import models
 
 class Booking(models.Model):
 
-    user = models.ForeignKey('register.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('register.User', on_delete=models.CASCADE, related_name='user')
     service = models.CharField(max_length=100)
     practitioner_id = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
