@@ -1,0 +1,51 @@
+{% extends "base.pro.html" %}
+
+{% block content %}
+<div id="app" class="min-h-screen subpixel-antialiased p-8">
+    <div class="container space-y-8 text-sm mx-auto">
+        <div class="space-y-5">
+            {% include 'elements/message.html' %}
+            <h1 class="mb-5">Mes services</h1>
+            <div class="flex justify-end">
+                <button class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="show-modal" type="button">
+                    Ajouter un service
+                </button>
+            </div>
+            <div class="bg-white shadow-lg hover:shadow-xl rounded-md overflow-hidden">
+                <table class="table flex table-auto w-full leading-normal">
+                    <thead class="uppercase text-gray-600 text-xs font-semibold bg-gray-200">
+                    <tr class="hidden md:table-row">
+                        <th class="text-left p-3">
+                            <p>Nom du service</p>
+                        </th>
+                        <th class="text-left p-3">
+                            <p>Descritpion</p>
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody class="flex-1 text-gray-700 sm:flex-none">
+                        {% if not services %}
+                            <tr class="border-t first:border-t-0 flex p-1 md:p-3 md:table-row flex-col w-full flex-wrap">
+                                <td class="p-1 md:p-3">
+                                    <p class="">Aucun résultat</p>
+                                </td>
+                            </tr>
+                        {% else %}
+                            {% for service in services %}
+                                {% include 'elements/service-table.html' with service=service%}
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "elements/modal-form.html" with form=form %}
+<script>
+    document.getElementById('show-modal').addEventListener('click', function() {
+        document.getElementById('modal').classList.toggle('hidden');
+    });
+</script>
+{% endblock %}

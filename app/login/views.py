@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from . import forms
 from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import redirect
 
 
 # Create your views here.
 
 def login_user(request):
+    if not request.user.is_anonymous:
+        return redirect("account_client" if request.user.role == 'PARTICULAR' else "account_pro")
+
     form = forms.LoginForm()
     message = ''
     if request.method == 'POST':
