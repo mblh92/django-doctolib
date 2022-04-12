@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from register.models import User
 from . import forms
 from django.contrib.auth import login
 from django.conf import settings
@@ -15,5 +14,8 @@ def register(request):
             user = form.save()
             # auto-login user
             login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, "register/particulier.html", context={'form': form})
+            if user.role == 'PARTICULAR':
+                return redirect(settings.LOGIN_REDIRECT_URL + '/client')
+            elif user.role == 'PROFESSIONAL':
+                return redirect(settings.LOGIN_REDIRECT_URL + '/pro')
+    return render(request, "register/index.html", context={'form': form})
