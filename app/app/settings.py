@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -134,3 +135,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'bg-gray-100 border-gray-500 text-gray-700',
+        messages.INFO: 'bg-blue-100 border-blue-500 text-blue-700',
+        messages.SUCCESS: 'bg-green-100 border-green-500 text-green-700',
+        messages.WARNING: 'bg-yellow-100 border-yellow-500 text-yellow-700',
+        messages.ERROR: 'bg-red-100 border-red-500 text-red-700',
+}

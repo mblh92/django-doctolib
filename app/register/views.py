@@ -1,12 +1,16 @@
-from django.conf import settings
-from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from . import forms
+from django.contrib.auth import login
+from django.conf import settings
+from django.shortcuts import redirect
 
 
 # Create your views here.
 
 def register(request):
+    if not request.user.is_anonymous:
+        return redirect("account_client" if request.user.role == 'PARTICULAR' else "account_pro")
+
     form = forms.RegisterForm()
     if request.method == 'POST':
         form = forms.RegisterForm(request.POST)
