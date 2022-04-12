@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex justify-center mt-5">
+    <button class="bg-blue-500 p-3 mb-5 rounded-lg text-white">
+        <a href="{% url 'account_client' %}">Retour à l'accueil</a>
+    </button>
+</div>
+<div class="">
+    {% for practitien in practiciens %}
+    <div class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+        <div class="rounded-t-lg h-32 overflow-hidden">
+            <img class="object-cover object-top w-full"
+                 src='https://images.assetsdelivery.com/compings_v2/ijeab/ijeab1706/ijeab170600115.jpg'
+                 alt='couverture'>
+        </div>
+        <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+            <img class="object-cover object-center h-32"
+                 src='https://images.assetsdelivery.com/compings_v2/captainvector/captainvector1603/captainvector160308031.jpg'
+                 alt='logo'>
+        </div>
+        <div class="text-center mt-2">
+            <h2 class="font-semibold">{{ practitien.first_name }} {{ practitien.last_name }}</h2>
+            <p class="text-gray-500">Practitien</p>
+            <p class="text-gray-500">{{practitien.age}} ans</p>
+            <p class="text-gray-500">{{practitien.phoneCabinet}}</p>
+            <p class="text-gray-500">{{practitien.addressCabinet}}</p>
+        </div>
+        <div class="p-4 border-t">
+            <button class="block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2 w-full">
+                Voir le profil <span class="italic">(Bientôt disponible)</span>
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

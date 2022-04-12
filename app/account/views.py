@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import ServiceForm
 from .forms import ProfileForm
 from .models import Services
+from register.models import User
 from booking.models import Booking
 
 
@@ -63,6 +64,13 @@ def account_services(request):
         messages.error(request, "Votre service n'a pas été ajouté")
         messages.error(request, form.errors)
     return render(request, "account/services.html", context={'form': form, 'services': services})
+
+def show_all_practicien(request):
+    if not check_user(request,'PARTICULAR'):
+        return redirect('account_pro')
+
+    practiciens = User.objects.filter(role="PROFESSIONAL")
+    return render(request, "account/show_all_practicien.html", context={'practiciens': practiciens})
 
 def show_services(request):
     services = Services.objects.filter(user_id=request.user.id)
