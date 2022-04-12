@@ -1,13 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.pro.html" %}
 
 {% block content %}
-<h1>Mon compte pro</h1>
-        {% if user.is_authenticated %}
-            <p>
-                Vous êtes connecté en tant que {{ request.user }}.
-                <a href="{% url 'logout' %}">
-                Se déconnecter
-                </a>
-            </p>
-        {% endif %}
+
 {% endblock %}

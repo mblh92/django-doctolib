@@ -19,7 +19,7 @@ def login_user(request):
                 login(request, user)
                 if user.role == 'PARTICULAR':
                     return redirect('/account/client')
-                else:
+                elif user.role == 'PROFESSIONAL':
                     return redirect('/account/pro')
         message = 'Identifiants invalides.'
     return render(request, "login/index.html", context={'form': form, 'message': message})

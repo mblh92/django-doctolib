@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
-
 from . import forms
 
 
@@ -19,5 +18,4 @@ def register(request):
                 return redirect(settings.LOGIN_REDIRECT_URL + '/client')
             elif user.role == 'PROFESSIONAL':
                 return redirect(settings.LOGIN_REDIRECT_URL + '/pro')
-
     return render(request, "register/index.html", context={'form': form})
