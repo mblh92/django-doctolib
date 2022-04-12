@@ -24,7 +24,11 @@
                 </button>
             </div>
             <div class="content-home w-full h-full">
-                {% block content %}{% endblock content %}
+                <div id="app" class="min-h-screen subpixel-antialiased p-8">
+                    <div class="container space-y-8 text-sm mx-auto">
+                        {% block content %}{% endblock content %}
+                    </div>
+                </div>
             </div>
         </div>
 

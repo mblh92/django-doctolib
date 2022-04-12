@@ -1,0 +1,27 @@
+{% extends "base.pro.html" %}
+
+{% block content %}
+    <div class="space-y-5">
+        {% include 'elements/message.html' %}
+        <h1>Mon profil</h1>
+        <div class="space-y-4">
+            <h2>Gérer ma page de presentation</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{form.username}}
+                <div class="flex space-x-4">
+                    {{form.last_name}}
+                    {{form.first_name}}
+                </div>
+                {{form.email}}
+                {{form.addressCabinet}}
+                {{form.phoneCabinet}}
+                {{form.age}}
+                {{form.description}}
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2">
+                    <i class="fas fa-plus"></i> Modifier ma fiche
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
