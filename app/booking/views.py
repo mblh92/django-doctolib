@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
-from register.models import User
 
 # Create your views here.
 
@@ -14,7 +13,6 @@ def check_user(request):
 @login_required
 def booking(request):
     if check_user(request):
-        all_users = User.objects.all()
         user_id = request.user.id
         form = BookingForm()
         message = ""
@@ -25,6 +23,6 @@ def booking(request):
                 obj.user_id = user_id
                 obj.save()
                 message = "Booking Successful"
-        return render(request, 'booking/index.html', {'form': form, "message": message, "all_users": all_users})
+        return render(request, 'booking/index.html', {'form': form, "message": message})
     else:
         return render(request, 'error/403.html')
