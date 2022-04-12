@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import ServiceForm
 from .forms import ProfileForm
 from .models import Services
+from booking.models import Booking
 
 
 # Create your views here.
@@ -34,10 +35,10 @@ def account_pro(request):
 
 @login_required
 def account_client(request):
+    bookings = Booking.objects.all().filter(user_id=request.user.id)
     if not check_user(request,'PARTICULAR'):
         return redirect('account_pro')
-    return render(request, "account/particulier.html")
-
+    return render(request, "account/particulier.html", {'bookings': bookings})
 @login_required
 def account_profil_pro(request):
     if not check_user(request,'PARTICULAR'):

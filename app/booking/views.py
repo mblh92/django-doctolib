@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
 
@@ -23,6 +23,7 @@ def booking(request):
                 obj.user_id = user_id
                 obj.save()
                 message = "Booking Successful"
+                return redirect('/account/client')
         return render(request, 'booking/index.html', {'form': form, "message": message})
     else:
         return render(request, 'error/403.html')
