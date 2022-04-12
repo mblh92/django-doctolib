@@ -1,7 +1,7 @@
+from django.conf import settings
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from . import forms
-from django.contrib.auth import login
-from django.conf import settings
 
 
 # Create your views here.
