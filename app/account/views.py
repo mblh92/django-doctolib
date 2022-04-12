@@ -48,3 +48,6 @@ def account_services(request):
 def show_services(request):
     services = Services.objects.filter(user_id=request.user.id)
     return services
+
+def account_localisation(request):
+    return render(request, "account/localisation.html")
